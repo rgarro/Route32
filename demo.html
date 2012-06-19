@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>Route32 Demo</title>
+		<meta name="description" content="Example Implementation of Route32 jQuery Anchor Routing Plugin" />
+		<meta name="author" content="Rolando Garro<rgarro@gmail.com>" />
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.route32.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				 
+				var mynumber = 0;
+				
+				function increase(){
+					mynumber = mynumber +1;
+				}
+				
+				var router = new Route32({
+                        'automatic':true
+                    });
+                    
+				router.add('#/caribean/',function(){
+						increase();
+						$("#arrivalPlace").html("Guapiles by the highway " + mynumber);
+					});    
+					
+				router.add('#/centralvalley/',function(){
+						increase();
+						$("#arrivalPlace").html("SanJose Caribenos Station" + mynumber);
+					});
+					
+				router.drive();    
+
+			});
+		</script>		
+	</head>
+	<body>
+		<ul>
+   			<li><a class="nav" href="#/caribean/">Caribean</a></li>
+   			<li><a class="nav" href="#/centralvalley/">Central Valley</a></li>    
+		</ul>
+<div id="arrivalPlace"></div>
+	</body>
+</html>
