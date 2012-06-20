@@ -13,22 +13,26 @@ if(typeof jQuery != "undefined"){
     function Route32(options){
         //Settings
         var settings = $.extend({
+        					//true executes routes from location hash changes, false from clicks
                            'automatic':true,
-                           'selector':'.nav'
+                           //selector from which we listen clicks when automatic false allow re-execution of same route
+                           'selector':'.nav',
+                           //manual drive is click based so needs an intentional delay to proper update latest hash
+                           'manualShiftChangeTime':100
                        },options);
         //array of hashes containing hashsregexpstr,callbackfunc pairs  
         var routes = [];
         
         var activeHash = '';
-            
+        
+        var lastHash = '';    
+
+        
         //methods
         var methods = {
             //initial method
             'init':function(){
-                window.onhashchange = function(evt){
-                       activeHash = "#" + evt.newURL.split("#")[1];           
-                        //activeHash = methods.getHashValue();
-                    };
+               
             },
             //verifies is string is a valid location hash
             'isValidHash':function(hashStr){
@@ -51,7 +55,21 @@ if(typeof jQuery != "undefined"){
                                         value.callback();
                                     }                                    
                                 });
-                            }            
+                            },
+             'updateHashExecute':function(){
+             	 window.onhashchange = function(evt){
+                        activeHash = methods.getHashValue(evt);                      
+                        methods.executeCurrent();
+                    };
+             },
+             'manualDrive':function(){
+             	 $(settings.selector).live('click',function(){                   	
+                    	setTimeout(function(){
+                    		activeHash = window.location.hash;
+                    		methods.executeCurrent();
+                    	},settings.manualShiftChangeTime);
+                    });   	
+             }            
                       };        
         //adds routes
         this.add = function(hashRegexpStr,callbackfunc){
@@ -67,23 +85,14 @@ if(typeof jQuery != "undefined"){
             if(routes.length > 0){
                 if(settings.automatic){
                     //start listening location changes
-                    window.onhashchange = function(evt){
-                        activeHash = methods.getHashValue(evt);                      
-                        methods.executeCurrent();
-                    };
+                   methods.updateHashExecute();
                 }else{
                     //listen selector click
-                    $(settings.selector).live('click',function(){
-                    	var turn = true;
-              			window.onhashchange = function(evt){  				
-                        	activeHash = methods.getHashValue(evt);                                    
-                        	turn = false;
-                        	methods.executeCurrent();
-                    	};
-                    	if(turn){
-                    		methods.executeCurrent();
-                    	}
-                    });                
+                    methods.manualDrive();            
+                }
+                activeHash = window.location.hash;
+                if(activeHash.length > 1){//initial verification 
+                	methods.executeCurrent();
                 }            
             }else{
                 alert('use add method to add routes');                
