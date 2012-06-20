@@ -6,7 +6,7 @@
  * @author Rolando Garro <rgarro@gmail.com>
  * @requires jQuery
  */
-//BEGIN
+//BEGIN..
 //Requires jQuery
 if(typeof jQuery != "undefined"){
 /* begin Route32 */
@@ -102,4 +102,4 @@ if(typeof jQuery != "undefined"){
 }else{
      alert("jQuery is required to ride Route32.");    
 }    
-//END    
+//END..    
