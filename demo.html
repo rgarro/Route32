@@ -19,7 +19,7 @@
 				}
 				
 				var router = new Route32({
-                        'automatic':false
+                        'automatic':true
                     });
                     
 				router.add('#/caribean/',function(){
@@ -32,6 +32,15 @@
 						$("#arrivalPlace").html("SanJose Caribenos Station" + mynumber);
 					});
 					
+				//Variables example
+				//to use variables declare the route normally
+				//then add #? query string on your anchor, pass
+				//object to your calback function
+				router.add('#/pacificzone/',function(varsObj){
+						increase();
+						$("#arrivalPlace").html(varsObj.beach + " beach " + varsObj.acco);
+					});
+						
 				router.drive();    
 
 			});
@@ -40,7 +49,9 @@
 	<body>
 		<ul>
    			<li><a class="nav" href="#/caribean/">Caribean</a></li>
-   			<li><a class="nav" href="#/centralvalley/">Central Valley</a></li>    
+   			<li><a class="nav" href="#/centralvalley/">Central Valley</a></li>  
+   			<li><a class="nav" href="#/pacificzone/#ghghghgh">Sandy Beach</a></li>
+   			<li><a class="nav" href="#/pacificzone/#?beach=Tamarindo&acco=camping">Tamarindo Beach</a></li>     
 		</ul>
 <div id="arrivalPlace"></div>
 	</body>

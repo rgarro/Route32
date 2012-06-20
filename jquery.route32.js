@@ -26,7 +26,9 @@ if(typeof jQuery != "undefined"){
         var activeHash = '';
         
         var lastHash = '';    
-
+		
+		//has variables
+		var hasVariables = false;
         
         //methods
         var methods = {
@@ -49,10 +51,44 @@ if(typeof jQuery != "undefined"){
                                 //return window.location.hash;
                                 return "#" + evt.newURL.split("#")[1]                
                             },
+            'activeHashFromLocation':function(){
+            	return "#" + window.location.hash.split("#")[1];
+            },
+            'hasVariables':function(){        	
+            	if(window.location.hash.split("#").length >2){ 		
+            		hasVariables = true;
+            		return true;
+            	}else{
+            		hasVariables = false;
+            		return false
+            	}
+            },
+            'getVariables':function(){            	
+            	var varstr = '';
+            	varstr = window.location.hash.split("#")[2];
+            	var retObj = new Object();
+  				if(/[?]([\w#!:.?+=&%@!\-\/])/.test(varstr)){
+  					var tmpstr = varstr.slice(1);
+            		var p = tmpstr.split("&");
+            		for(var i=0;i<p.length;i++){       		
+            			var h = p[i].split("=");
+            			var cmdstr = "retObj."+h[0]+" = '"+h[1]+"';";           		
+            			eval(cmdstr);
+            		}
+            		return retObj;
+  				}else{
+  					alert("Correct variable format is #?name=value sepaired by &.");
+  				}          	
+            },
             'executeCurrent':function(){      
                                 $.each(routes,function(index,value){           
                                     if(value.hash == activeHash){
-                                        value.callback();
+                                        if(methods.hasVariables()){
+                                        	vars = methods.getVariables();
+                                        	value.callback(vars);
+                                        }else{
+                                        	value.callback();	
+                                        }                                        
                                     }                                    
                                 });
                             },
@@ -65,12 +101,16 @@ if(typeof jQuery != "undefined"){
              'manualDrive':function(){
              	 $(settings.selector).live('click',function(){                   	
                     	setTimeout(function(){
-                    		activeHash = window.location.hash;
+                    		activeHash = methods.activeHashFromLocation();
                     		methods.executeCurrent();
                     	},settings.manualShiftChangeTime);
                     });   	
              }            
-                      };        
+                      };
+          //variables can be passed after a second # singn on the hash as a query string             
+         this.getVariables = function(){
+         	
+         }                     
         //adds routes
         this.add = function(hashRegexpStr,callbackfunc){
             if(methods.isValidHash(hashRegexpStr) && methods.isValidCallbackfunc(callbackfunc)){
@@ -90,7 +130,7 @@ if(typeof jQuery != "undefined"){
                     //listen selector click
                     methods.manualDrive();            
                 }
-                activeHash = window.location.hash;
+                activeHash = methods.activeHashFromLocation();
                 if(activeHash.length > 1){//initial verification 
                 	methods.executeCurrent();
                 }            
