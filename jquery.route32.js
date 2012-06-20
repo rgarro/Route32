@@ -38,7 +38,7 @@ if(typeof jQuery != "undefined"){
             },
             //verifies is string is a valid location hash
             'isValidHash':function(hashStr){
-                                return true;
+            					return /[#]([\w#!:.?+=&%@!\-\/])/.test(hashStr);
                             },
             'isValidCallbackfunc':function(callbackfunc){
                                     if(typeof callbackfunc == "function"){
@@ -112,11 +112,11 @@ if(typeof jQuery != "undefined"){
          	
          }                     
         //adds routes
-        this.add = function(hashRegexpStr,callbackfunc){
+        this.add = function(hashRegexpStr,callbackfunc){       	
             if(methods.isValidHash(hashRegexpStr) && methods.isValidCallbackfunc(callbackfunc)){
                 routes.push({hash:hashRegexpStr,callback:callbackfunc});
             }else{
-                alert('route should be a valid hash string, callback function pair.');
+                alert('route should be a valid hash string #/example/, callback function pair.');
             }      
         };
         
