@@ -49,7 +49,12 @@ if(typeof jQuery != "undefined"){
                                   },
             'getHashValue':function(evt){
                                 //return window.location.hash;
-                                return "#" + evt.newURL.split("#")[1]                
+                                if(typeof evt.newURL != "undefined"){
+                                	return "#" + evt.newURL.split("#")[1];	
+                                }else{
+                                	return methods.activeHashFromLocation();
+                                }
+                                                
                             },
             'activeHashFromLocation':function(){
             	return "#" + window.location.hash.split("#")[1];
