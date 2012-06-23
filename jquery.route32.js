@@ -68,11 +68,15 @@ if(typeof jQuery != "undefined"){
             		return false
             	}
             },
+            //verifies if variable match #?name=vale&name=value format
+            'isValidVariableString':function(varstr){
+            	return /^\?([0-9a-zA-Z]+=[0-9a-zA-Z])/.test(varstr);
+            },
             'getVariables':function(){            	
             	var varstr = '';
             	varstr = window.location.hash.split("#")[2];
             	var retObj = new Object();
-  				if(/[?]([\w#!:.?+=&%@!\-\/])/.test(varstr)){
+  				if(methods.isValidVariableString(varstr)){
   					var tmpstr = varstr.slice(1);
             		var p = tmpstr.split("&");
             		for(var i=0;i<p.length;i++){       		

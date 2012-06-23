@@ -19,27 +19,32 @@
 				}
 				
 				var router = new Route32({
-                        'automatic':true
-                    });
+					'automatic':true
+                });
                     
 				router.add('#/caribean/',function(){
-						increase();
-						$("#arrivalPlace").html("Guapiles by the highway " + mynumber);
-					});    
+					increase();
+					$("#arrivalPlace").html("Guapiles by the highway " + mynumber);
+				});    
 					
 				router.add('#/centralvalley/',function(){
-						increase();
-						$("#arrivalPlace").html("SanJose  Station" + mynumber);
-					});
+					increase();
+					$("#arrivalPlace").html("SanJose  Station" + mynumber);
+				});
 					
 				//Variables example
 				//to use variables declare the route normally
 				//then add #? query string on your anchor, pass
 				//object to your calback function
 				router.add('#/pacificzone/',function(varsObj){
-						increase();
-						$("#arrivalPlace").html(varsObj.beach + " beach " + varsObj.acco);
-					});
+					increase();
+					$("#arrivalPlace").html(varsObj.beach + " beach " + varsObj.acco);
+				});
+					
+				router.add('#/mountain/',function(obj){
+					increase();
+					$("#arrivalPlace").html(obj.name + " mountain ");
+				});
 						
 				router.drive();    
 
@@ -52,7 +57,8 @@
    			<li><a class="nav" href="#/centralvalley/">Central Valley</a></li>  
    			<li><a class="nav" href="#/pacificzone/#nonvalidvariablestring">Sandy Beach</a></li>
    			<li><a class="nav" href="#/pacificzone/#?beach=Tamarindo&acco=camping">Tamarindo Beach</a></li>
-   			<li><a class="nav" href="#/pacificzone/#?beach=Jaco&acco=bar">Jaco Beach</a></li>     
+   			<li><a class="nav" href="#/pacificzone/#?beach=Jaco&acco=bar">Jaco Beach</a></li>
+   			<li><a class="nav" href="#/mountain/#?name=BlueMountain">Mountain</a></li>     
 		</ul>
 <div id="arrivalPlace"></div>
 	</body>
