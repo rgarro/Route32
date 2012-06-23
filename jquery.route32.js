@@ -38,7 +38,8 @@ if(typeof jQuery != "undefined"){
             },
             //verifies is string is a valid location hash
             'isValidHash':function(hashStr){
-            					return /[#]([\w#!:.?+=&%@!\-\/])/.test(hashStr);
+            					var testHashRegExp = new RegExp('^\#/([0-9a-zA-Z])');
+            					return testHashRegExp.test(hashStr);
                             },
             'isValidCallbackfunc':function(callbackfunc){
                                     if(typeof callbackfunc == "function"){
