@@ -3,6 +3,8 @@
  * executes callback on location hash change that matches declared routes. 
  * Intenteded to be use as a piece on JavaScript MVC Apps 
  * 
+ * Licensed under the MIT license.
+ * 
  * @author Rolando Garro <rgarro@gmail.com>
  * @requires jQuery
  */
