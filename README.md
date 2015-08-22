@@ -5,8 +5,9 @@ Simple Javascript jQuery Anchor Location Router, executes callback on location h
 
 [![Maneje Despacio](http://www.prensalibre.cr/files/noticias/images/detail/721578111_ruta32.jpg)]
 
-
+<pre>
 <ul>
-   			<li><a class="nav" href="#/caribean/">Caribean</a></li>
-   			<li><a class="nav" href="#/centralvalley/">Central Valley</a></li>  
-		</ul>
+   <li><a class="nav" href="#/caribean/">Caribean</a></li>
+   <li><a class="nav" href="#/centralvalley/">Central Valley</a></li>  
+</ul>
+</pre>
