@@ -19,16 +19,6 @@ Simple Javascript jQuery Anchor Location Router, executes callback on location h
 				router.add('#/caribean/',function(){
 			      // your navigation silently driving to your callback
 				});    
-					
-					
-				//Variables example
-				//to use variables declare the route normally
-				//then add #? query string on your anchor, pass
-				//object to your calback function
-				router.add('#/pacificzone/',function(varsObj){
-					increase();
-					$("#arrivalPlace").html(varsObj.beach + " beach " + varsObj.acco);
-				});
 						
 				router.drive();    
 			});
