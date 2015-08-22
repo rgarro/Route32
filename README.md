@@ -22,7 +22,7 @@ Simple Javascript jQuery Anchor Location Router, executes callback on location h
 						
 				router.drive();    
 			});
-		</script>		
+</script>		
 
 ```
 
