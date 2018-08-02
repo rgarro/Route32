@@ -1,0 +1,26 @@
+{
+  "name": "route32",
+  "version": "1.0.0",
+  "description": "Simple Javascript jQuery Anchor Location Router, executes callback on location hash change that matches declared routes. Intenteded to be use as a piece on javascript mvvm mvc apps",
+  "main": "jquery.route32.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rgarro/Route32.git"
+  },
+  "keywords": [
+    "anchor",
+    "location",
+    "router",
+    "browser",
+    "router"
+  ],
+  "author": "Rolando Garro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rgarro/Route32/issues"
+  },
+  "homepage": "https://github.com/rgarro/Route32#readme"
+}
