@@ -34,4 +34,4 @@ Buy Me a Beer, Starbucks Expresso or send a cheese burguer ... [Paypal](https://
 
 
 
-[![Maneje Despacio](http://www.prensalibre.cr/files/noticias/images/detail/721578111_ruta32.jpg)]
+[![Maneje Despacio](https://raw.githubusercontent.com/rgarro/Route32/master/route32.png)]
